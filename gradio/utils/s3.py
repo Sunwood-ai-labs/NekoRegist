@@ -45,19 +45,22 @@ def upload_image(image_path: str, key: str) -> str:
         # ContentTypeの設定
         content_type = 'image/jpeg' if key.lower().endswith('.jpg') or key.lower().endswith('.jpeg') else 'image/png'
         
-        # 画像をアップロード（メタデータ付き）
+        # 画像をアップロード（ContentTypeのみ設定）
         s3.upload_file(
             image_path,
             bucket_name,
             key,
             ExtraArgs={
-                'ContentType': content_type,
-                'ACL': 'public-read'
+                'ContentType': content_type
             }
         )
         
-        # 公開URLを生成
-        url = f"https://{bucket_name}.s3.amazonaws.com/{key}"
+        # 署名付きURLを生成（1時間有効）
+        url = s3.generate_presigned_url(
+            'get_object',
+            Params={'Bucket': bucket_name, 'Key': key},
+            ExpiresIn=3600
+        )
         return url
     except ClientError as e:
         error_code = e.response['Error']['Code']
