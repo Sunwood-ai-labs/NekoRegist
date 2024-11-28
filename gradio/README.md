@@ -1,3 +1,9 @@
+<div align="center">
+
+![](../assets/header3.svg)
+
+</div>
+
 # Gradioアプリケーション
 
 ## 概要
