@@ -1,6 +1,6 @@
 <div align="center">
 
-![](assets/header.svg)
+![](assets/header2.svg)
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python)](https://www.python.org/)
 [![Gradio](https://img.shields.io/badge/Gradio-最新版-orange?logo=gradio)](https://gradio.app/)
