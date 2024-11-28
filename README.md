@@ -15,6 +15,9 @@ GradioベースのAWS対応猫登録システム（日本語UI）です。シン
 
 </div>
 
+
+https://github.com/user-attachments/assets/c81d67c6-e290-498e-890b-844124e8db1d
+
 ## 主な機能
 - 猫の基本情報登録（名前、年齢、品種、写真）
 - 登録済み猫の一覧表示と管理
