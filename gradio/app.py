@@ -35,7 +35,7 @@ def create_app():
     initialize_services()
 
     # アプリケーション作成
-    with gr.Blocks(title="猫登録システム", theme=gr.themes.Ocean()) as app:
+    with gr.Blocks(title="猫登録システム") as app:
         gr.Markdown("# 🐱 猫登録システム")
 
         with gr.Tabs():
