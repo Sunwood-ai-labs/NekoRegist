@@ -1,0 +1,5 @@
+infrastructure/terraform/terraform.tfvars
+infrastructure/terraform/.terraform.lock.hcl
+infrastructure/terraform/terraform.tfstate
+infrastructure/terraform/terraform.tfstate.backup
+infrastructure/terraform/.terraform/providers/registry.terraform.io/hashicorp/aws/5.78.0/windows_amd64/LICENSE.txt
