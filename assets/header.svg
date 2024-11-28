@@ -2,11 +2,13 @@
 <svg width="800" height="200" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@400;700&display=swap');
-      .title-text {
-        font-family: 'Kaisei Decol', serif;
-        font-weight: 700;
-      }
+      <![CDATA[
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@400;700&display=swap');
+        .title-text {
+          font-family: 'Kaisei Decol', serif;
+          font-weight: 700;
+        }
+      ]]>
     </style>
 
     <!-- 背景グラデーション -->
@@ -54,8 +56,8 @@
     </filter>
   </defs>
 
-  <!-- 背景 -->
-  <rect width="800" height="200" fill="url(#bgGradient)"/>
+  <!-- 背景（角丸） -->
+  <rect width="800" height="200" rx="40" ry="40" fill="url(#bgGradient)"/>
 
   <!-- 装飾的な波線 -->
   <path d="M0,100 Q200,80 400,100 T800,100" 
