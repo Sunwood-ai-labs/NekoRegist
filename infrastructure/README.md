@@ -13,7 +13,7 @@
 
 ### 使用サービス
 1. **Amazon RDS (PostgreSQL)**
-   - エンジン: PostgreSQL 14.6
+   - エンジン: PostgreSQL 16.3
    - インスタンス: db.t3.micro
    - ストレージ: 20GB (gp2)
    - 自動バックアップ: 7日間保持
@@ -29,6 +29,36 @@
      │
      └──────── [Amazon S3]
 ```
+
+## Terraform構成
+
+### ファイル構造
+```
+terraform/
+├── provider.tf    - AWSプロバイダーの設定
+├── vpc.tf         - VPCとネットワーク関連リソース
+├── rds.tf         - RDS関連リソース
+├── s3.tf          - S3バケット関連リソース
+├── variables.tf    - 変数定義
+├── outputs.tf      - 出力定義
+└── terraform.tfvars - 変数値の設定
+```
+
+### 主要コンポーネント
+1. **VPC設定**
+   - パブリック/プライベートサブネット
+   - NAT Gateway
+   - Internet Gateway
+   - 適切なルーティング設定
+
+2. **RDS設定**
+   - セキュリティグループ
+   - サブネットグループ
+   - PostgreSQLインスタンス
+
+3. **S3設定**
+   - バケット作成
+   - パブリックアクセス設定
 
 ## データベース設計
 
@@ -55,29 +85,40 @@ CREATE INDEX idx_cats_created_at ON cats(created_at DESC);
 
 ### 前提条件
 1. AWSアカウントとアクセス権限
-2. 環境変数の設定
+2. Terraformのインストール (1.0以上)
+3. 環境変数の設定
    ```bash
    # AWS認証情報
    AWS_ACCESS_KEY_ID
    AWS_SECRET_ACCESS_KEY
    AWS_DEFAULT_REGION
-
-   # データベース接続情報
-   DATABASE_URL
-   PGUSER
-   PGPASSWORD
-   PGDATABASE
-   PGHOST
-   PGPORT
-
-   # S3設定
-   S3_BUCKET_NAME
    ```
 
 ### デプロイ手順
 1. Terraformによるインフラ構築
-2. データベースマイグレーション
-3. アプリケーションのデプロイ
+   ```bash
+   cd terraform
+   terraform init
+   terraform plan
+   terraform apply
+   ```
+
+2. 環境変数の設定（terraform outputから取得）
+   ```bash
+   # データベース接続情報
+   export DATABASE_URL="postgres://${username}:${password}@${rds_endpoint}/${database_name}"
+   export PGUSER=${username}
+   export PGPASSWORD=${password}
+   export PGDATABASE=${database_name}
+   export PGHOST=${rds_host}
+   export PGPORT=5432
+
+   # S3設定
+   export S3_BUCKET_NAME=${bucket_name}
+   ```
+
+3. データベースマイグレーション
+4. アプリケーションのデプロイ
 
 ### 監視設定
 1. CloudWatchメトリクス
