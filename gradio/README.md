@@ -1,6 +1,6 @@
 <div align="center">
 
-![](../assets/header_gradio.svg)
+![](../assets/header_gradio2.svg)
 
 </div>
 
