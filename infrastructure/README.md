@@ -1,6 +1,6 @@
 <div align="center">
 
-![](../assets/header3.svg)
+![](../assets/header_infra.svg)
 
 </div>
 
