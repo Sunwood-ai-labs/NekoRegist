@@ -10,7 +10,6 @@ from utils.s3 import init_s3
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-
 def initialize_services():
     """サービスの初期化"""
     try:
@@ -29,7 +28,6 @@ def initialize_services():
         logger.error(f"初期化エラー: {str(e)}")
         raise e
 
-
 def create_app():
     # サービスの初期化
     initialize_services()
@@ -37,16 +35,15 @@ def create_app():
     # アプリケーション作成
     with gr.Blocks(title="猫登録システム") as app:
         gr.Markdown("# 🐱 猫登録システム")
-
+        
         with gr.Tabs():
             with gr.Tab("新規登録"):
                 create_cat_form()
-
+            
             with gr.Tab("登録済み猫一覧"):
                 create_cat_list()
 
     return app
-
 
 if __name__ == "__main__":
     try:
